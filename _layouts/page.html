@@ -44,7 +44,8 @@
         // [END addscopes]
         // [START signin]
         firebase.auth().signInWithRedirect(provider);
-        // [END signin]
+        // [END signin]var userID = firebase.auth().currentUser.uid;
+        
       } else {
         // [START signout]
         firebase.auth().signOut();
@@ -52,6 +53,7 @@
       }
       // [START_EXCLUDE]
       document.getElementById('sign-in').disabled = true;
+      
       // [END_EXCLUDE]
     }
     // [END buttoncallback]
@@ -101,22 +103,23 @@
           var providerData = user.providerData;
           console.log(email);
           // [START_EXCLUDE]
-        //   document.getElementById('sign-in-status').textContent = 'Signed in';
           document.getElementById('sign-in').textContent = 'Sign out';
-        //   document.getElementById('quickstart-account-details').textContent = user.email;
-          document.getElementById('aff').style.visibility = "visible";
-        //   document.getElementById('userLogIn').style.visibility = "visible";
+        var affliationRef = firebase.database().ref('users/' + user.uid+ '/affliation');
+        // console.log('hihi')
+        affliationRef.once('value').then(function (snapshot) {
+            if (snapshot.val() == null) 
+                document.getElementById('affliation').style.visibility = "visible";
 
+            else {
+                console.log(snapshot.val());
+                document.getElementById('affliation').setAttribute('value', snapshot.val());
+                document.getElementById('button').textContent = 'Change';
 
-          // [END_EXCLUDE]
+            }
+        });
         } else {
-          // User is signed out.
-          // [START_EXCLUDE]
-        //   document.getElementById('sign-in-status').textContent = 'Signed out';
           document.getElementById('sign-in').textContent = '{{site.sign_in_message}}';
-          document.getElementById('quickstart-account-details').textContent = 'null';
-          document.getElementById('aff').style.visibility = "hidden";
-        //   document.getElementById('userLogIn').style.visibility = "hidden";
+          document.getElementById('affliation').style.visibility = "hidden";
           document.getElementById('link').style.visibility = "hidden";
 
           // [END_EXCLUDE]
@@ -134,15 +137,22 @@
     function getInfo() {
       if (firebase.auth().currentUser){
         if (document.getElementById('affliation').value.length > 0) {
-          var user = firebase.auth().currentUser;
-          var affliation = document.getElementById('affliation').value;
-          writeUserInfo(user, affliation);
-          console.log(document.getElementById('affliation').value);
+            var user = firebase.auth().currentUser;
+            var affliation = document.getElementById('affliation').value;
+            var affliationRef = firebase.database().ref('users/' + user.uid+ '/affliation');
+
+            affliationRef.once('value').then(function(snapshot) {
+                if (snapshot.val() == null) {writeUserInfo(user, affliation); document.getElementById('button').textContent = 'Change';}
+                else {
+                    updateUsetInfo(user, affliation);
+                }
+             });
+            console.log(document.getElementById('affliation').value);
         } else {
-          alert('Please enter affliation');
+            alert('Please Senter affliation');
         };
       } else {
-        alert('Please log in');
+            alert('Please log in');
       }
     }
     function writeUserInfo(user, affliation) {
@@ -151,6 +161,11 @@
         email: user.email,
         affliation: affliation,
         numlinkclick: 0
+      });
+    }
+    function updateUsetInfo(user, affliation) {
+      firebase.database().ref('users/' + user.uid+ '/affliation').transaction(function (snapshot) {
+          return affliation;
       });
     }
     function linkClick() {
@@ -193,24 +208,13 @@
         
               <!-- Container for the demo -->
               <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
-                <!-- <div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                  <h2 class="mdl-card__title-text">{{site.sign_in_message}}</h2>
-                </div> -->
+
                 <div class="mdl-card__supporting-text mdl-color-text--grey-600">
                   <!-- <p>Sign in with your GitHub account below.</p> -->
         
                   <!-- Button that handles sign-in/sign-out -->
                   <button disabled class="mdl-button mdl-js-button mdl-button--raised" id="sign-in">{{site.sign_in_message}}</button>
         
-                  <!-- Container where we'll display the user details -->
-                  <!-- <div class="quickstart-user-details-container">
-                    Sign-in status: <span id="sign-in-status">Unknown</span>
-                    <div id="userLogIn">
-                        <div>Hello</div>
-                        <pre><code id="quickstart-account-details">null</code></pre>
-                    </div>
-                    
-                  </div> -->
                   <div id="aff">
                       Affliation:
                       <input type="text" id="affliation" name="affliation" value="">
