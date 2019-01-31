@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.5.0 -->
 <title>{{site.title}}</title>
@@ -12,232 +12,201 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
 <meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
+<link rel="canonical" href="https://iolfcv.github.io" />
+<meta property="og:url" content="https://iolfcv.github.io" />
 <meta property="og:site_name" content="{{site.title}}" />
 
 <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
 <script>
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyD8xOcp25rWZaeEr56EAp7yyM_tFwmEUsI",
-    authDomain: "iolfcv.firebaseapp.com",
-    databaseURL: "https://iolfcv.firebaseio.com",
-    projectId: "iolfcv",
-    storageBucket: "iolfcv.appspot.com",
-    messagingSenderId: "497271623628"
+	apiKey: "AIzaSyD8xOcp25rWZaeEr56EAp7yyM_tFwmEUsI",
+	authDomain: "iolfcv.firebaseapp.com",
+	databaseURL: "https://iolfcv.firebaseio.com",
+	projectId: "iolfcv",
+	storageBucket: "iolfcv.appspot.com",
+	messagingSenderId: "497271623628"
   };
   firebase.initializeApp(config);
 </script>
   <script type="text/javascript">
-    /**
-     * Function called when clicking the Login/Logout button.
-     */
-    // [START buttoncallback]
-    function toggleSignIn() {
-      if (!firebase.auth().currentUser) {
-        // [START createprovider]
-        var provider = new firebase.auth.GithubAuthProvider();
-        // [END createprovider]
-        // [START addscopes]
-        provider.addScope('repo');
-        // [END addscopes]
-        // [START signin]
-        firebase.auth().signInWithRedirect(provider);
-        // [END signin]var userID = firebase.auth().currentUser.uid;
-        
-      } else {
-        // [START signout]
-        firebase.auth().signOut();
-        // [END signout]
-      }
-      // [START_EXCLUDE]
-      document.getElementById('sign-in').disabled = true;
-      
-      // [END_EXCLUDE]
-    }
-    // [END buttoncallback]
-    /**
-     * initApp handles setting up UI event listeners and registering Firebase auth listeners:
-     *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
-     *    out, and that is where we update the UI.
-     *  - firebase.auth().getRedirectResult(): This promise completes when the user gets back from
-     *    the auth redirect flow. It is where you can get the OAuth access token from the IDP.
-     */
-    function initApp() {
-      // Result from Redirect auth flow.
-      // [START getidptoken]
-      firebase.auth().getRedirectResult().then(function(result) {
-        // The signed-in user info.
-        var user = result.user;
-      }).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // [START_EXCLUDE]
-        if (errorCode === 'auth/account-exists-with-different-credential') {
-          alert('You have already signed up with a different auth provider for that email.');
-          // If you are using multiple auth providers on your app you should handle linking
-          // the user's accounts here.
-        } else {
-          console.error(error);
-        }
-        // [END_EXCLUDE]
-      });
-      // [END getidptoken]
-      // Listening for auth state changes.
-      // [START authstatelistener]
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          // User is signed in.
-          var displayName = user.displayName;
-          var email = user.email;
-          var emailVerified = user.emailVerified;
-          var photoURL = user.photoURL;
-          var isAnonymous = user.isAnonymous;
-          var uid = user.uid;
-          var providerData = user.providerData;
-          console.log(email);
-          // [START_EXCLUDE]
-          document.getElementById('sign-in').textContent = 'Sign out';
-        var affliationRef = firebase.database().ref('users/' + user.uid+ '/affliation');
-        // console.log('hihi')
-        affliationRef.once('value').then(function (snapshot) {
-            if (snapshot.val() == null) 
-                document.getElementById('affliation').style.visibility = "visible";
+	/**
+	 * Function called when clicking the Login/Logout button.
+	 */
+	function toggleSignIn() {
+		if (!firebase.auth().currentUser) {
+			var provider = new firebase.auth.GithubAuthProvider();
+			provider.addScope('repo');
+			firebase.auth().signInWithRedirect(provider);
 
-            else {
-                console.log(snapshot.val());
-                document.getElementById('affliation').setAttribute('value', snapshot.val());
-                document.getElementById('button').textContent = 'Change';
+		} else {
+			firebase.auth().signOut();
+		}
+		document.getElementById('sign-in').disabled = true;
+		}
+	/**
+	 * initApp handles setting up UI event listeners and registering Firebase auth listeners:
+	 *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
+	 *    out, and that is where we update the UI.
+	 *  - firebase.auth().getRedirectResult(): This promise completes when the user gets back from
+	 *    the auth redirect flow. It is where you can get the OAuth access token from the IDP.
+	 */
+	function initApp() {
+		firebase.auth().getRedirectResult().then(function(result) {
+			// The signed-in user info.
+			var user = result.user;
+		}).catch(function(error) {
+			var errorCode = error.code;
+			var errorMessage = error.message;
+			var email = error.email;
+			var credential = error.credential;
+			if (errorCode === 'auth/account-exists-with-different-credential') {
+				alert('You have already signed up with a different auth provider for that email.');
+			} else {
+			console.error(error);
+			}
+	  	});
+		firebase.auth().onAuthStateChanged(function(user) {
+			if (user) {
+				// User is signed in.
+				var displayName = user.displayName;
+				var email = user.email;
+				var emailVerified = user.emailVerified;
+				var photoURL = user.photoURL;
+				var isAnonymous = user.isAnonymous;
+				var uid = user.uid;
+				var providerData = user.providerData;
+				console.log(email);
+				document.getElementById('sign-in').textContent = 'Sign out';
+				var affliationRef = firebase.database().ref('users/' + user.uid+ '/affliation');
+				// console.log('hihi')
+				affliationRef.once('value').then(function (snapshot) {
+					if (snapshot.val() == null)
+						document.getElementById('aff').style.visibility = "visible";
 
-            }
-        });
-        } else {
-          document.getElementById('sign-in').textContent = '{{site.sign_in_message}}';
-          document.getElementById('affliation').style.visibility = "hidden";
-          document.getElementById('link').style.visibility = "hidden";
+					else {
+						console.log(snapshot.val());
+						document.getElementById('affliation').setAttribute('value', snapshot.val());
+						document.getElementById('button').textContent = 'Change';
 
-          // [END_EXCLUDE]
-        }
-        // [START_EXCLUDE]
-        document.getElementById('sign-in').disabled = false;
-        // [END_EXCLUDE]
-      });
-      // [END authstatelistener]
-      document.getElementById('sign-in').addEventListener('click', toggleSignIn, false);
-    }
-    window.onload = function() {
-      initApp();
-    };
-    function getInfo() {
-      if (firebase.auth().currentUser){
-        if (document.getElementById('affliation').value.length > 0) {
-            var user = firebase.auth().currentUser;
-            var affliation = document.getElementById('affliation').value;
-            var affliationRef = firebase.database().ref('users/' + user.uid+ '/affliation');
+					}
+				});
+			} else {
+				document.getElementById('sign-in').textContent = '{{site.sign_in_message}}';
+				document.getElementById('aff').style.visibility = "hidden";
+				document.getElementById('link').style.visibility = "hidden";
+			}
+				document.getElementById('sign-in').disabled = false;
+		});
+	  document.getElementById('sign-in').addEventListener('click', toggleSignIn, false);
+	}
+	window.onload = function() {
+	  initApp();
+	};
+	function getInfo() {
+	  if (firebase.auth().currentUser){
+		if (document.getElementById('affliation').value.length > 0) {
+			var user = firebase.auth().currentUser;
+			var affliation = document.getElementById('affliation').value;
+			var affliationRef = firebase.database().ref('users/' + user.uid+ '/affliation');
 
-            affliationRef.once('value').then(function(snapshot) {
-                if (snapshot.val() == null) {writeUserInfo(user, affliation); document.getElementById('button').textContent = 'Change';}
-                else {
-                    updateUsetInfo(user, affliation);
-                }
-             });
-            console.log(document.getElementById('affliation').value);
-        } else {
-            alert('Please Senter affliation');
-        };
-      } else {
-            alert('Please log in');
-      }
-    }
-    function writeUserInfo(user, affliation) {
-      firebase.database().ref('users/' + user.uid).set({
-        username: user.displayName,
-        email: user.email,
-        affliation: affliation,
-        numlinkclick: 0
-      });
-    }
-    function updateUsetInfo(user, affliation) {
-      firebase.database().ref('users/' + user.uid+ '/affliation').transaction(function (snapshot) {
-          return affliation;
-      });
-    }
-    function linkClick() {
-      var userID = firebase.auth().currentUser.uid;
-      var numlinkclickRef = firebase.database().ref('users/' + userID+ '/numlinkclick');
-      numlinkclickRef.transaction(function (snapshot) {
-          return snapshot + 1;
-      });
-      
-    }
+			affliationRef.once('value').then(function(snapshot) {
+				if (snapshot.val() == null) {writeUserInfo(user, affliation); document.getElementById('button').textContent = 'Change';}
+				else {
+					updateUsetInfo(user, affliation);
+				}
+			 });
+			console.log(document.getElementById('affliation').value);
+		} else {
+			alert('Please Senter affliation');
+		};
+	  } else {
+			alert('Please log in');
+	  }
+	}
+	function writeUserInfo(user, affliation) {
+		firebase.database().ref('users/' + user.uid).set({
+			username: user.displayName,
+			email: user.email,
+			affliation: affliation,
+			numlinkclick: 0
+		});
+	}
+	function updateUsetInfo(user, affliation) {
+		firebase.database().ref('users/' + user.uid+ '/affliation').transaction(function (snapshot) {
+			return affliation;
+		});
+	}
+	function linkClick() {
+		var userID = firebase.auth().currentUser.uid;
+		var numlinkclickRef = firebase.database().ref('users/' + userID+ '/numlinkclick');
+		numlinkclickRef.transaction(function (snapshot) {
+			return snapshot + 1;
+		});
+
+	}
   </script>
 <script type="application/ld+json">
-{"name":"{{site.title}}","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","@type":"WebSite","url":"http://localhost:4000/","headline":"Your awesome title","@context":"http://schema.org"}</script>
+{"name":"{{site.title}}","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","@type":"WebSite","url":"https://iolfcv.github.io","headline":"Your awesome title","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/assets/css/style.css?v=">
-    <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <![endif]-->
+	<link rel="stylesheet" href="/assets/css/style.css?v=">
+	<!--[if lt IE 9]>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<![endif]-->
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1><a href="https://iolfcv.github.io">{{site.title}}</a></h1>
-        
-        
+	<div class="wrapper">
+	  <header>
+		<h1><a href="https://iolfcv.github.io">{{site.title}}</a></h1>
 
-        <img src="/assets/img/logo.png" alt="Logo" />
-        
 
-        
 
-        
+		<img src="/assets/img/logo.png" alt="Logo" />
 
-        
-      </header>
-      <section>
-        <main class="mdl-layout__content mdl-color--grey-100">
-            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
-        
-              <!-- Container for the demo -->
-              <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
 
-                <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                  <!-- <p>Sign in with your GitHub account below.</p> -->
-        
-                  <!-- Button that handles sign-in/sign-out -->
-                  <button disabled class="mdl-button mdl-js-button mdl-button--raised" id="sign-in">{{site.sign_in_message}}</button>
-        
-                  <div id="aff">
-                      Affliation:
-                      <input type="text" id="affliation" name="affliation" value="">
-                      <button onclick="getInfo()" id="button">Submit</button>
-                  </div>
-                  <div>
-                      <button id="link" onclick="linkClick()">This is a dead link :)</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </main>
-      
 
-      
-      </section>
-      <footer>
-        
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    
-    <script src="/assets/js/scale.fix.js"></script>
-    
+
+
+
+
+	  </header>
+	  <section>
+		<main class="mdl-layout__content mdl-color--grey-100">
+			<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
+
+			  <!-- Container for the demo -->
+			  <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+
+				<div class="mdl-card__supporting-text mdl-color-text--grey-600">
+				  <!-- <p>Sign in with your GitHub account below.</p> -->
+
+				  <!-- Button that handles sign-in/sign-out -->
+				  <button disabled class="mdl-button mdl-js-button mdl-button--raised" id="sign-in">{{site.sign_in_message}}</button>
+
+				  <div id="aff">
+					  Affliation:
+					  <input type="text" id="affliation" name="affliation" value="">
+					  <button onclick="getInfo()" id="button">Submit</button>
+				  </div>
+				  <div>
+					  <button id="link" onclick="linkClick()">This is a dead link :)</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </main>
+
+
+
+	  </section>
+	  <footer>
+
+		<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+	  </footer>
+	</div>
+
+	<script src="/assets/js/scale.fix.js"></script>
+
   </body>
 </html>
