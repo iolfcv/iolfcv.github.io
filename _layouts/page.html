@@ -81,13 +81,14 @@
 				var affliationRef = firebase.database().ref('users/' + user.uid+ '/affliation');
 				// console.log('hihi')
 				affliationRef.once('value').then(function (snapshot) {
-					if (snapshot.val() == null)
-						document.getElementById('aff').style.visibility = "visible";
-
-					else {
+					if (snapshot.val() != null && snapshot.val().length > 0) {
 						console.log(snapshot.val());
 						document.getElementById('affliation').setAttribute('value', snapshot.val());
 						document.getElementById('button').textContent = 'Change';
+
+					} else {
+						document.getElementById('aff').style.visibility = "visible";
+						document.getElementById('link').style.visibility = "hidden";						
 
 					}
 				});
@@ -111,8 +112,11 @@
 			var affliationRef = firebase.database().ref('users/' + user.uid+ '/affliation');
 
 			affliationRef.once('value').then(function(snapshot) {
-				if (snapshot.val() == null) {writeUserInfo(user, affliation); document.getElementById('button').textContent = 'Change';}
-				else {
+				if (snapshot.val() == null) {
+					writeUserInfo(user, affliation); 
+					document.getElementById('button').textContent = 'Change';
+					document.getElementById('link').style.visibility = "visible";
+				} else {
 					updateUsetInfo(user, affliation);
 				}
 			 });
@@ -185,7 +189,7 @@
 				  <button disabled class="mdl-button mdl-js-button mdl-button--raised" id="sign-in">{{site.sign_in_message}}</button>
 
 				  <div id="aff">
-					  Affliation:
+					  {{site.aff}}:
 					  <input type="text" id="affliation" name="affliation" value="">
 					  <button onclick="getInfo()" id="button">Submit</button>
 				  </div>
