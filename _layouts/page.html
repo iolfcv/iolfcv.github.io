@@ -97,11 +97,11 @@
 					}
 				});
 				var nameRef = ref.child('username');
-				nameRef.once('value').then(function (snapshot) {
-					if (snapshot.val() == null) document.getElementById('nameInp').setAttribute('value', "");
-					document.getElementById('nameInp').setAttribute('value', snapshot.val());
-					
-				});
+					nameRef.once('value').then(function (snapshot) {
+						if (snapshot.val() == null) document.getElementById('nameInp').setAttribute('value', "");
+						document.getElementById('nameInp').setAttribute('value', snapshot.val());
+						
+					});
 			} else {
 				document.getElementById('sign-in').textContent = '{{site.sign_in_message}}';
 				document.getElementById('aff').style.visibility = "hidden";
@@ -118,32 +118,33 @@
 	};
 	function getInfo() {
 	  if (firebase.auth().currentUser){
-		if (document.getElementById('affliation').value.length > 0) {
-			var user = firebase.auth().currentUser;
-			var affliation = document.getElementById('affliation').value;
-			var name = document.getElementById('nameInp').value;
-			var affliationRef = firebase.database().ref('users/' + user.uid+ '/affliation');
+			if (document.getElementById('affliation').value.length > 0) {
+				console.log(document.getElementById('affliation').value.length);
+				var user = firebase.auth().currentUser;
+				var affliation = document.getElementById('affliation').value;
+				var name = document.getElementById('nameInp').value;
+				var affliationRef = firebase.database().ref('users/' + user.uid+ '/affliation');
 
-			affliationRef.once('value').then(function(snapshot) {
-				if (snapshot.val() == null) {
-					writeUserInfo(user, affliation); 
-					document.getElementById('button').textContent = 'Change';
-					document.getElementById('link').style.visibility = "visible";
-				} else {
-					updateUsetInfo(user, affliation, name);
-				}
-			 });
-			console.log(document.getElementById('affliation').value);
-			alert('Your information has been saved.')
-		} else {
-			alert('Please Senter affliation');
-		};
-	  } else {
-			alert('Please log in');
-	  }
+				affliationRef.once('value').then(function(snapshot) {
+					if (snapshot.val() == null) {
+						writeUserInfo(user, affliation, name); 
+						document.getElementById('button').textContent = 'Change';
+						document.getElementById('link').style.visibility = "visible";
+					} else {
+						updateUsetInfo(user, affliation, name);
+					}
+				});
+				console.log(document.getElementById('affliation').value);
+				alert('Your information has been saved.')
+			} else {
+				alert('Please enter affliation');
+			};
+			} else {
+				alert('Please log in');
+			}
 	}
-	function writeUserInfo(user, affliation) {
-		if (user.displayName == null) displayName = "";
+	function writeUserInfo(user, affliation, name) {
+		if (user.displayName == null) displayName = name == null ? "" : name;
 		firebase.database().ref('users/' + user.uid).set({
 			username: displayName,
 			email: user.email,
@@ -168,12 +169,15 @@
 
 	}
 	var input = document.getElementById("affliation");
+	if (input != null) {
+		console.log('not null');
 		input.addEventListener("keyup", function(event) {
 			event.preventDefault();
 			if (event.keyCode === 13) {
 				document.getElementById("button").click();
 			}
-	});
+	})
+	};
   </script>
 <script type="application/ld+json">
 {"name":"{{site.title}}","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","@type":"WebSite","url":"https://iolfcv.github.io","headline":"Your awesome title","@context":"http://schema.org"}</script>
