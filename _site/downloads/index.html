@@ -78,7 +78,11 @@
 				var providerData = user.providerData;
 				console.log(email);
 				document.getElementById('sign-in').textContent = 'Sign out';
-				var affliationRef = firebase.database().ref('users/' + user.uid+ '/affliation');
+				document.getElementById('name').style.visibility = "visible";
+				document.getElementById('email').style.visibility = "visible";
+				document.getElementById('emailInp').setAttribute('value', email);
+				var ref = firebase.database().ref('users/' + user.uid);
+				var affliationRef = ref.child('affliation');
 				// console.log('hihi')
 				affliationRef.once('value').then(function (snapshot) {
 					if (snapshot.val() != null && snapshot.val().length > 0) {
@@ -92,10 +96,18 @@
 
 					}
 				});
+				var nameRef = ref.child('username');
+				nameRef.once('value').then(function (snapshot) {
+					if (snapshot.val() == null) document.getElementById('nameInp').setAttribute('value', "");
+					document.getElementById('nameInp').setAttribute('value', snapshot.val());
+					
+				});
 			} else {
 				document.getElementById('sign-in').textContent = 'Sign in with GitHub to download';
 				document.getElementById('aff').style.visibility = "hidden";
 				document.getElementById('link').style.visibility = "hidden";
+				document.getElementById('name').style.visibility = "hidden";
+				document.getElementById('email').style.visibility = "hidden";
 			}
 				document.getElementById('sign-in').disabled = false;
 		});
@@ -109,6 +121,7 @@
 		if (document.getElementById('affliation').value.length > 0) {
 			var user = firebase.auth().currentUser;
 			var affliation = document.getElementById('affliation').value;
+			var name = document.getElementById('nameInp').value;
 			var affliationRef = firebase.database().ref('users/' + user.uid+ '/affliation');
 
 			affliationRef.once('value').then(function(snapshot) {
@@ -117,10 +130,11 @@
 					document.getElementById('button').textContent = 'Change';
 					document.getElementById('link').style.visibility = "visible";
 				} else {
-					updateUsetInfo(user, affliation);
+					updateUsetInfo(user, affliation, name);
 				}
 			 });
 			console.log(document.getElementById('affliation').value);
+			alert('Your information has been saved.')
 		} else {
 			alert('Please Senter affliation');
 		};
@@ -129,16 +143,20 @@
 	  }
 	}
 	function writeUserInfo(user, affliation) {
+		if (user.displayName == null) displayName = "";
 		firebase.database().ref('users/' + user.uid).set({
-			username: user.displayName,
+			username: displayName,
 			email: user.email,
 			affliation: affliation,
 			numlinkclick: 0
 		});
 	}
-	function updateUsetInfo(user, affliation) {
+	function updateUsetInfo(user, affliation, name) {
 		firebase.database().ref('users/' + user.uid+ '/affliation').transaction(function (snapshot) {
 			return affliation;
+		});
+		firebase.database().ref('users/' + user.uid+ '/username').transaction(function (snapshot) {
+			return name;
 		});
 	}
 	function linkClick() {
@@ -149,12 +167,24 @@
 		});
 
 	}
+	var input = document.getElementById("affliation");
+		input.addEventListener("keyup", function(event) {
+			event.preventDefault();
+			if (event.keyCode === 13) {
+				document.getElementById("button").click();
+			}
+	});
   </script>
 <script type="application/ld+json">
 {"name":"Incremental Object Learning from Contiguous Views","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","@type":"WebSite","url":"https://iolfcv.github.io","headline":"Your awesome title","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 	<link rel="stylesheet" href="/assets/css/style.css?v=">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
 	<!--[if lt IE 9]>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<![endif]-->
@@ -176,32 +206,31 @@
 
 	  </header>
 	  <section>
-		<main class="mdl-layout__content mdl-color--grey-100">
-			<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
-
-			  <!-- Container for the demo -->
-			  <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
-
-				<div class="mdl-card__supporting-text mdl-color-text--grey-600">
-				  <!-- <p>Sign in with your GitHub account below.</p> -->
-
-				  <!-- Button that handles sign-in/sign-out -->
-				  <button disabled class="mdl-button mdl-js-button mdl-button--raised" id="sign-in">Sign in with GitHub to download</button>
-
-				  <div id="aff">
-					  Affiliation:
-					  <input type="text" id="affliation" name="affliation" value="">
-					  <button onclick="getInfo()" id="button">Submit</button>
+					<!-- <p>Sign in with your GitHub account below.</p> -->
+				<div class="w3-container" id="container">
+					<!-- Button that handles sign-in/sign-out -->
+					<div class="w3-container w3-padding-large"><button class="w3-button w3-black w3-large w3-margin-top w3-opacity w3-hover-opacity-off" id="sign-in">Sign in with GitHub to download</button></div>
+				  
+					<div class="w3-panel w3-padding-large">
+						<div class="w3-container w3-padding-large w3-border" id="aff">
+							<div class="w3-padding-large" id="name">
+									Name:
+									<input type="text" id="nameInp" name="name" value="">
+							</div>
+							<div class="w3-padding-large" id="email">
+									Email:
+									<input type="text" id="emailInp" name="name" value="" disabled>
+							</div>
+							<div class="w3-padding-large">
+									Affiliation:
+									<input type="text" id="affliation" name="affliation" value=""></div>
+							<div class="w3-padding-large"><button class="w3-opacity w3-black w3-hover-opacity-off" onclick="getInfo()" id="button">Submit</button></div>
+						</div>
+					</div>
+				  <div class="downloads w3-container w3-padding-large">
+					  <button class="w3-opacity w3-black w3-hover-opacity-off" id="link" onclick="linkClick()">Download</button>
 				  </div>
-				  <div>
-					  <button id="link" onclick="linkClick()">This is a dead link :)</button>
-				  </div>
-				</div>
-			  </div>
 			</div>
-		  </main>
-
-
 
 	  </section>
 	  <footer>
