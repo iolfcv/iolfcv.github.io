@@ -341,7 +341,7 @@
 	};
 	function getInfo() {
 	  if (firebase.auth().currentUser){
-			if (document.getElementById('affliation').value.length > 0) {
+			if (document.getElementById('affliation').value.length > 0 && document.getElementById('nameInp').value.length > 0) {
 				console.log(document.getElementById('affliation').value.length);
 				var user = firebase.auth().currentUser;
 				var affliation = document.getElementById('affliation').value;
@@ -360,7 +360,7 @@
 				console.log(document.getElementById('affliation').value);
 				alert('Your information has been saved.')
 			} else {
-				alert('Please enter affliation');
+				alert('Please enter your information');
 			};
 			} else {
 				alert('Please log in');
@@ -442,37 +442,43 @@
 					</div>
 				</div>
 	  <section>
-					<!-- <p>Sign in with your GitHub account below.</p> -->
-				<div class="w3-container" id="container">
-					<!-- Button that handles sign-in/sign-out -->
-					<div class="w3-container w3-padding-large"><button class="w3-button w3-black w3-large w3-margin-top w3-opacity w3-hover-opacity-off" id="sign-in">Sign in with GitHub to download</button></div>
-				  
-					<div class="w3-panel w3-padding-large">
-						<div class="w3-container w3-padding-large w3-border" id="aff">
-							<div class="w3-padding-large" id="name">
-									Name:
-									<input type="text" id="nameInp" name="name" value="">
-							</div>
-							<div class="w3-padding-large" id="email">
-									Email:
-									<input type="text" id="emailInp" name="name" value="" disabled>
-							</div>
-							<div class="w3-padding-large">
-									Affiliation:
-									<input type="text" id="affliation" name="affliation" value=""></div>
-							<div class="w3-padding-large"><button class="w3-opacity w3-black w3-hover-opacity-off" onclick="getInfo()" id="button">Submit</button></div>
+					<!-- <p>Sign in with GitHub account below.</p> -->
+				<div class="container" id="container">
+					<div class="row">
+						<div class="col text-center">
+								<div class="w3-container w3-padding-large"><button class="w3-button w3-black w3-large w3-margin-top w3-opacity w3-hover-opacity-off" id="sign-in">Sign in with GitHub to download</button></div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col text-align">
+								<div class="w3-panel w3-padding-large">
+										<div class="w3-container w3-padding-large w3-border" id="aff">
+											<div class="w3-padding-large" id="name">
+													<strong>Name<sup>*</sup></strong>
+													<input class="container" type="text" id="nameInp" name="name" value="">
+											</div>
+											<div class="w3-padding-large" id="email">
+													<strong>Email<sup>*</sup></strong>
+													<input class="container" type="text" id="emailInp" name="name" value="" disabled>
+											</div>
+											<div class="w3-padding-large">
+													<strong>Affiliation<sup>*</sup></strong>
+													<input class="container" type="text" id="affliation" name="affliation" value=""></div>
+											<div class="w3-padding-large"><button class="w3-opacity w3-black w3-hover-opacity-off" onclick="getInfo()" id="button">Submit</button></div>
+										</div>
+									</div>
+						</div>
+
+					</div>
+					<!-- Button that handles sign-in/sign-out -->
+				  
+					
 				  <div class="downloads w3-container w3-padding-large">
 					  <button class="w3-opacity w3-black w3-hover-opacity-off" id="link" onclick="linkClick()">Download</button>
 				  </div>
 			</div>
 
 	  </section>
-	  <footer>
-
-		<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-	  </footer>
 	</div>
 
 	<script src="/assets/js/scale.fix.js"></script>
