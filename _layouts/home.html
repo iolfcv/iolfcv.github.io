@@ -6,17 +6,250 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>{{site.title}}</title>
-<meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="{{site.title}}" />
+<title>Incremental Object Learning from Contiguous Views</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+<style>
+
+  body, td, th {
+    font-family: 'Open Sans', sans-serif;
+  }
+  h2 {
+    margin-top: 3ex;
+  }
+  .color-primary-0 { color: #2E4272 }  /* Main Primary color */
+  .color-primary-1 { color: #858890 }
+  .color-primary-2 { color: #556281 }
+  .color-primary-3 { color: #0E2863 }
+  .color-primary-4 { color: #021B54 }
+
+  .nd-pageheader {
+    padding: 2rem 15px;
+    margin-bottom: 1.5rem;
+    color: #e4f1fe;
+    text-align: center;
+    background-image: url("/image/background.png");
+  }
+
+  .nd-pageheader a {
+    color: #e4f1fe;
+  }
+
+  .nd-pageheader .container {
+    position: relative
+  }
+
+  .nd-pageheader h1 {
+    font-size: 3rem;
+    font-weight: 400;
+    color: #fff
+  }
+
+  .nd-pageheader address {
+    font-weight: 500;
+  }
+
+  .nd-pageheader p {
+    margin-bottom: 0;
+    font-size: 1.25rem;
+    font-weight: 300
+  }
+
+  .citation {
+    margin-top: 15px;
+    clear: both;
+  }
+  .citation:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  .citation img {
+    float: left;
+    margin: 0 10px 10px 0;
+    width: 150px;
+  }
+
+  .newsmedia {
+    margin-top: 15px;
+    clear: both;
+  }
+  .newsmedia:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  .newsmedia img {
+    float: left;
+    margin: 20px 20px 10px 0;
+    width: 140px;
+    border: none;
+  }
+
+
+  figcaption {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 3px;
+  }
+
+  .highlight {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    background: gainsboro;
+  }
+
+  .smallfig {
+    width: 80%;
+  }
+
+  .modal .big-modal {
+    width:auto;
+    max-width:90%;
+    max-height:80%;
+  }
+
+  .img-wrapper {
+    text-align: center;
+  }
+
+  .big-modal img {
+    max-height: 60vh;
+  }
+
+  .img-scroller {
+    overflow-x: scroll;
+  }
+
+  .img-scroller .img-fluid {
+    max-width: initial;
+  }
+
+  @media (min-width: 576px) {
+    .nd-pageheader {
+      padding-top:4rem;
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .smallfig {
+      width: 60%;
+    }
+    .nd-pageheader h1 {
+      font-size:4rem
+    }
+
+    .nd-pageheader p {
+      font-size: 1.5rem
+    }
+    .twocol-md {
+      column-count: 2;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .smallfig {
+      width: 45%;
+    }
+    #fig-arch-compare {
+      width: 49%;
+    }
+  }
+  .best { font: 12.5px Helvetica; }
+  .best { border-collapse: collapse; border-spacing: 0; }
+  .best td { position: relative; }
+  .best td img { margin-top: 15px; }
+  .best td .unit { font-size: 10px; position: absolute; top: 0; left: 3px; white-space: nowrap; width: 100%; text-overflow: clip; overflow: hidden; }
+  .best td .score { display: none; position: absolute; top: 0; right: 3px; white-sapce: nowrap; }
+  .best td:nth-child(1) {
+    min-width: 28px;
+    border-right: 3px solid transparent;
+  }
+  .best td .netname {
+    transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    font: 12px helvetica;
+    white-space: nowrap;
+    padding: 4px;
+  }
+  .best th, .best td {
+    padding-left: 3px;
+  }
+  .best img {
+    width: 100%;
+  }
+  .best .concept {
+    color: black;
+    font: 14px helvetica;
+    padding-bottom: 2px;
+    text-transform: capitalize;
+    text-align: left;
+    margin-right: 1px;
+  }
+
+  @media (min-width: 576px) {
+    .best td .unit { font-size: inherit; }
+    .best td .netname { font-size: 14px; }
+    .best .concept { font-size: 20px; }
+  }
+
+  @media (min-width: 768px) {
+    .best td .netname { font-size: 17px; }
+  }
+
+  @media (min-width: 1200px) {
+    .best td .score { display: block; }
+  }
+
+  .modal {
+    text-align: center;
+    padding: 0!important;
+  }
+
+  .modal:before {
+    content: '';
+    display: inline-block;
+    height: 80%;
+    vertical-align: middle;
+    margin-right: -4px;
+  }
+
+  .modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+  }
+  /* Trick for moving the media-control-panel down on chrome */
+  video::-webkit-media-controls-panel {
+  margin-top: 30px;
+  /* Do not auto-hide controls */
+  opacity: 1 !important;
+  display: flex !important;
+  }
+  video[controls] {
+  margin-bottom: 30px;
+}
+</style>
+    </head>
+
+<!-- <meta name="generator" content="Jekyll v3.8.5" /> -->
+<meta property="og:title" content="Incremental Object Learning from Contiguous Views" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
 <meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
 <link rel="canonical" href="http://localhost:4000/" />
 <meta property="og:url" content="http://localhost:4000/" />
-<meta property="og:site_name" content="{{site.title}}" />
+<meta property="og:site_name" content="Incremental Object Learning from Contiguous Views" />
 <script type="application/ld+json">
-{"name":"{{site.title}}","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","@type":"WebSite","url":"http://localhost:4000/","headline":"Your awesome title","@context":"http://schema.org"}</script>
+{"name":"Incremental Object Learning from Contiguous Views","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","@type":"WebSite","url":"http://localhost:4000/","headline":"Your awesome title","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/style.css?v=">
@@ -24,40 +257,87 @@
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
-  </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1><a href="https://iolfcv.github.io">{{site.title}}</a></h1>
+    <div class="nd-pageheader">
+      <div class="container">
+        <p class="lead">
+            <h1><a href="https://iolfcv.github.io"><strong>Incremental Object Learning from Contiguous Views</strong></a></h1>
+            <br>
+            <address>
+            <nobr>Stefan Stojanov<sup>1</sup>,</nobr>
+            <nobr>Samarth Mishra*<sup>1</sup>,</nobr>
+            <nobr>Ngoc Anh Thai*<sup>1</sup>,</nobr>
+            <nobr>Nikhil Dhanda<sup>1</sup>,</nobr>
+            <nobr>Ahmad Humayun<sup>1</sup>,</nobr>
+            <nobr>Chen Yu<sup>2</sup>,</nobr>
+            <nobr>Linda B. Smith<sup>2</sup>,</nobr>
+            <nobr>James M. Rehg<sup>1</sup></nobr>
+            <br>
+            <nobr><sup>1</sup>Georgia Institute of Technology</nobr>
+            <br>
+            <nobr><sup>2</sup>Indiana University</nobr>
+            </address>
+
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <p>
+              <a href="/downloads/index.html" class="d-inline-block p-3"><strong>Data</strong></a>
+              <a href="http://openaccess.thecvf.com/content_CVPR_2019/html/Stojanov_Incremental_Object_Learning_From_Contiguous_Views_CVPR_2019_paper.html" class="d-inline-block p-3">
+                <img height="200" width="156" src="image/paper.png" style="border:1px solid" data-nothumb="">
+                <br>
+                <br>
+                <strong>CVPR 2019 Paper</strong></a>
+              <a href="https://github.com/iolfcv/experiments" class="d-inline-block p-3">
+                <img height="200" width="156" src="image/code.png" style="border:1px solid" data-nothumb="">
+                <br>
+                <br>
+                <strong>Code</strong></a>
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col text-align">
+          <h2>Abstract</h2>
+          <p>In this work, we present CRIB (Continual Recognition Inspired by Babies), a synthetic incremental object learning environment that can produce data that models visual imagery produced by object exploration in early infancy. CRIB is coupled with a new 3D object dataset, Toys-200, that contains 200 unique toy-like object instances, and is also compatible with existing 3D datasets. Through extensive empirical evaluation of state-of-the-art incremental learning algorithms, we find the novel empirical result that repetition can significantly ameliorate the effects of catastrophic forgetting. Furthermore, we find that in certain cases repetition allows for performance approaching that of batch learning algorithms. Finally, we propose an unsupervised incremental learning task with intriguing baseline results.
+            </p>
+        </div>
+      </div>
+    </div>
+      <!-- <header>
+        <h1><a href="https://iolfcv.github.io">Incremental Object Learning from Contiguous Views</a></h1>
         
         
         <!-- <iframe src="https://giphy.com/embed/fu25u6L9s6RB6" width="300" height="200" frameBorder="0" class="giphy-embed"></iframe><p><a href="https://giphy.com/gifs/disney-mickey-mouse-fu25u6L9s6RB6"></a></p> -->
-        <img src="http://drive.google.com/uc?export=view&id=1XJYy_Sb7Cq-v5PNQ_bLLSnpU8uKMZV8e" alt="Logo" />
-        <ul class="downloads">
+        <!-- <img src="http://drive.google.com/uc?export=view&id=1XJYy_Sb7Cq-v5PNQ_bLLSnpU8uKMZV8e" alt="Logo" /> -->
+        <!-- <ul class="downloads">
           <li><a href="/downloads/index.html">Download <strong>ZIP File</strong></a></li>
           <li><a href="http://openaccess.thecvf.com/content_CVPR_2019/html/Stojanov_Incremental_Object_Learning_From_Contiguous_Views_CVPR_2019_paper.html">View <strong>Paper</strong></a></li>
           <li><a href="https://github.com/iolfcv/experiments">View On <strong>GitHub</strong></a></li>
-        </ul>
+        </ul> -->
 
         
 
         
 
         
-      </header>
+      <!-- </header> -->
       <section>
 
       
 
-      <h1>Abstract</h1>
-      <p>In this work, we present CRIB (Continual Recognition Inspired by Babies), a synthetic incremental object learning environment that can produce data that models visual imagery produced by object exploration in early infancy. CRIB is coupled with a new 3D object dataset, Toys-200, that contains 200 unique toy-like object instances, and is also compatible with existing 3D datasets. Through extensive empirical evaluation of state-of-the-art incremental learning algorithms, we find the novel empirical result that repetition can significantly ameliorate the effects of catastrophic forgetting. Furthermore, we find that in certain cases repetition allows for performance approaching that of batch learning algorithms. Finally, we propose an unsupervised incremental learning task with intriguing baseline results.
-      </p>
       
       </section>
-      <footer>
+      <!-- <footer>
         
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+      </footer> -->
     </div>
     
     <script src="/assets/js/scale.fix.js"></script>
