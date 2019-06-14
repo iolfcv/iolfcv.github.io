@@ -42,13 +42,14 @@
   }
 
   .nd-pageheader h1 {
-    font-size: 3rem;
+    font-size: 17px;
     font-weight: 400;
     color: #fff
   }
 
   .nd-pageheader address {
     font-weight: 900;
+    font-size: 17px;
   }
 
   .nd-pageheader p {
@@ -129,6 +130,17 @@
     max-width: initial;
   }
 
+  figure1 {
+    margin: 1em 30px;
+  }
+
+  figcaption1 {
+    font-size: 16px;
+    margin-top: 5px;
+    text-align: center;
+    display: block;
+  } 
+
   @media (min-width: 576px) {
     .nd-pageheader {
       padding-top:4rem;
@@ -142,7 +154,7 @@
       width: 60%;
     }
     .nd-pageheader h1 {
-      font-size:4rem
+      font-size:2.5rem
     }
 
     .nd-pageheader p {
@@ -244,13 +256,13 @@
 <!-- <meta name="generator" content="Jekyll v3.8.5" /> -->
 <meta property="og:title" content="Incremental Object Learning from Contiguous Views" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
-<meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+<meta name="description" content="In this work, we present CRIB (Continual Recognition Inspired by Babies), a synthetic incremental object learning environment that can produce data that models visual imagery produced by object exploration in early infancy. CRIB is coupled with a new 3D object dataset, Toys-200, that contains 200 unique toy-like object instances, and is also compatible with existing 3D datasets. Through extensive empirical evaluation of state-of-the-art incremental learning algorithms, we find the novel empirical result that repetition can significantly ameliorate the effects of catastrophic forgetting. Furthermore, we find that in certain cases repetition allows for performance approaching that of batch learning algorithms. Finally, we propose an unsupervised incremental learning task with intriguing baseline results." />
+<meta property="og:description" content="In this work, we present CRIB (Continual Recognition Inspired by Babies), a synthetic incremental object learning environment that can produce data that models visual imagery produced by object exploration in early infancy. CRIB is coupled with a new 3D object dataset, Toys-200, that contains 200 unique toy-like object instances, and is also compatible with existing 3D datasets. Through extensive empirical evaluation of state-of-the-art incremental learning algorithms, we find the novel empirical result that repetition can significantly ameliorate the effects of catastrophic forgetting. Furthermore, we find that in certain cases repetition allows for performance approaching that of batch learning algorithms. Finally, we propose an unsupervised incremental learning task with intriguing baseline results." />
 <link rel="canonical" href="http://localhost:4000/" />
 <meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="Incremental Object Learning from Contiguous Views" />
 <script type="application/ld+json">
-{"name":"Incremental Object Learning from Contiguous Views","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","@type":"WebSite","url":"http://localhost:4000/","headline":"Your awesome title","@context":"http://schema.org"}</script>
+{"name":"Incremental Object Learning from Contiguous Views","description":"In this work, we present CRIB (Continual Recognition Inspired by Babies), a synthetic incremental object learning environment that can produce data that models visual imagery produced by object exploration in early infancy. CRIB is coupled with a new 3D object dataset, Toys-200, that contains 200 unique toy-like object instances, and is also compatible with existing 3D datasets. Through extensive empirical evaluation of state-of-the-art incremental learning algorithms, we find the novel empirical result that repetition can significantly ameliorate the effects of catastrophic forgetting. Furthermore, we find that in certain cases repetition allows for performance approaching that of batch learning algorithms. Finally, we propose an unsupervised incremental learning task with intriguing baseline results.","@type":"WebSite","url":"http://localhost:4000/","headline":"Your awesome title","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/style.css?v=">
@@ -278,6 +290,8 @@
             <nobr><sup>1</sup>Georgia Institute of Technology</nobr>
             <br>
             <nobr><sup>2</sup>Indiana University</nobr>
+            <br>
+            <nobr><sup>*</sup>Equal contribution</nobr>
             </address>
 
         </p>
@@ -314,18 +328,78 @@
             </p>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col">
+          <h2>Repeated Exposure Ameliorates Catastrophic Forgetting</h2>
+          <div class="col text-center">
+            <img height="350" width="800" src="http://drive.google.com/uc?export=view&id=11m_mOD5uRhZ1cakBZu1XqzwdsA3e67O5">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <h2>CRIB Learning Environment Samples</h2>
+          <h4 class="text-center">Instance Learning Exposures</h4>
+          <figure1 class="d-inline-block p-0">
+            <figcaption1>Plane</figcaption1>
+            <img src="http://drive.google.com/uc?export=view&id=1OMwDPu1vMeDplpmXkzKbcbww2g3KvsqQ" width="150" height="150" frameBorder="0">
+            
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <figcaption1>Cup</figcaption1>
+              <img src="http://drive.google.com/uc?export=view&id=1LtPrzfP0U5pMGXZnCRJR6HIrqRrybQpc" width="150" height="150" frameBorder="0">
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <figcaption1>Truck</figcaption1>
+              <img src="http://drive.google.com/uc?export=view&id=1ARuGSONsHcasfyIUXfcKrEmrddJ8AUZT" width="150" height="150" frameBorder="0">             
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <figcaption1>Bee</figcaption1>
+              <img src="http://drive.google.com/uc?export=view&id=1KVpeB0-HMnPrC-Fq1lYKMYqnLh0feQAk" width="150" height="150" frameBorder="0">
+              
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <figcaption1>Spaceship</figcaption1>
+              <img src="http://drive.google.com/uc?export=view&id=1nTldbL_cOlURDn5hLhM07aJUlaTNVyM_" width="150" height="150" frameBorder="0">
+              
+          </figure1>
+
+          <h4 class="text-center">Instance Testing Image Data</h4>
+          <figure1 class="d-inline-block p-0">
+            <img src="http://drive.google.com/uc?export=view&id=1uIBP-jK92C65vf_QP4C7X0mr27aZCD_O" width="150" height="150" frameBorder="0">
+            
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <img src="http://drive.google.com/uc?export=view&id=1dPpIoaDw-csrCfaYD5KKH2LpLEykcsuk" width="150" height="150" frameBorder="0">
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <img src="http://drive.google.com/uc?export=view&id=1tD4wG9gAUTqt1pR2FUgE-_jogmVLQFzK" width="150" height="150" frameBorder="0">             
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <img src="http://drive.google.com/uc?export=view&id=1mz8wxxNawjfhSNLux2ntI27Xe2tQpRCQ" width="150" height="150" frameBorder="0">
+              
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <img src="http://drive.google.com/uc?export=view&id=1XN0MfvEu2UqfRrtwXmzrsxygPGCMrOKn" width="150" height="150" frameBorder="0">
+              
+          </figure1>
+
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col">
+            <h2>Incremental Learning Without Supervision is not Solved</h2>
+            <div class="col text-center">
+              <img height="350" width="800" src="http://drive.google.com/uc?export=view&id=1Y8mRE518aqPflRfJbE6mK4z3erWLGixM">
+            </div>
+          </div>
+        </div>
     </div>
-      <!-- <header>
-        <h1><a href="https://iolfcv.github.io">Incremental Object Learning from Contiguous Views</a></h1>
-        
-        
-        <!-- <iframe src="https://giphy.com/embed/fu25u6L9s6RB6" width="300" height="200" frameBorder="0" class="giphy-embed"></iframe><p><a href="https://giphy.com/gifs/disney-mickey-mouse-fu25u6L9s6RB6"></a></p> -->
-        <!-- <img src="http://drive.google.com/uc?export=view&id=1XJYy_Sb7Cq-v5PNQ_bLLSnpU8uKMZV8e" alt="Logo" /> -->
-        <!-- <ul class="downloads">
-          <li><a href="/downloads/index.html">Download <strong>ZIP File</strong></a></li>
-          <li><a href="http://openaccess.thecvf.com/content_CVPR_2019/html/Stojanov_Incremental_Object_Learning_From_Contiguous_Views_CVPR_2019_paper.html">View <strong>Paper</strong></a></li>
-          <li><a href="https://github.com/iolfcv/experiments">View On <strong>GitHub</strong></a></li>
-        </ul> -->
+    
+    
 
         
 
