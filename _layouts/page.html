@@ -36,7 +36,7 @@
 	function toggleSignIn() {
 		if (!firebase.auth().currentUser) {
 			var provider = new firebase.auth.GithubAuthProvider();
-			provider.addScope('repo');
+			// provider.addScope('repo');
 			firebase.auth().signInWithRedirect(provider);
 
 		} else {
@@ -92,7 +92,7 @@
 
 					} else {
 						document.getElementById('aff').style.visibility = "visible";
-						document.getElementById('link').style.visibility = "hidden";						
+						document.getElementById('link').style.visibility = "hidden";
 
 					}
 				});
@@ -100,7 +100,7 @@
 					nameRef.once('value').then(function (snapshot) {
 						if (snapshot.val() == null) document.getElementById('nameInp').setAttribute('value', "");
 						document.getElementById('nameInp').setAttribute('value', snapshot.val());
-						
+
 					});
 			} else {
 				document.getElementById('sign-in').textContent = '{{site.sign_in_message}}';
@@ -127,7 +127,7 @@
 
 				affliationRef.once('value').then(function(snapshot) {
 					if (snapshot.val() == null) {
-						writeUserInfo(user, affliation, name); 
+						writeUserInfo(user, affliation, name);
 						document.getElementById('button').textContent = 'Change';
 						document.getElementById('link').style.visibility = "visible";
 					} else {
@@ -214,7 +214,7 @@
 				<div class="w3-container" id="container">
 					<!-- Button that handles sign-in/sign-out -->
 					<div class="w3-container w3-padding-large"><button class="w3-button w3-black w3-large w3-margin-top w3-opacity w3-hover-opacity-off" id="sign-in">{{site.sign_in_message}}</button></div>
-				  
+
 					<div class="w3-panel w3-padding-large">
 						<div class="w3-container w3-padding-large w3-border" id="aff">
 							<div class="w3-padding-large" id="name">
