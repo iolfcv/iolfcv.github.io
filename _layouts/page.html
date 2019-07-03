@@ -1,20 +1,244 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<head>
+				<meta charset="UTF-8">
+				<meta http-equiv="X-UA-Compatible" content="IE=edge">
+				<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>{{site.title}}</title>
-<meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="{{site.title}}" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
-<meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
-<link rel="canonical" href="https://iolfcv.github.io" />
-<meta property="og:url" content="https://iolfcv.github.io" />
-<meta property="og:site_name" content="{{site.title}}" />
+		<!-- Begin Jekyll SEO tag v2.5.0 -->
+		<title>Incremental Object Learning from Contiguous Views</title>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+		<style>
+
+			body, td, th {
+				font-family: 'Open Sans', sans-serif;
+			}
+			h2 {
+				margin-top: 3ex;
+			}
+			.color-primary-0 { color: #2E4272 }  /* Main Primary color */
+			.color-primary-1 { color: #858890 }
+			.color-primary-2 { color: #556281 }
+			.color-primary-3 { color: #0E2863 }
+			.color-primary-4 { color: #021B54 }
+
+			.nd-pageheader {
+				padding: 2rem 15px;
+				margin-bottom: 1.5rem;
+				color: #e4f1fe;
+				text-align: center;
+				background-image: url("http://drive.google.com/uc?export=view&id=1Hgq0QKUVaPVsShcf2DaMBpdfcn3VEoU6");
+			}
+
+			.nd-pageheader a {
+				color: #e4f1fe;
+			}
+
+			.nd-pageheader .container {
+				position: relative
+			}
+
+			.nd-pageheader h1 {
+				font-size: 3rem;
+				font-weight: 400;
+				color: #fff
+			}
+
+			.nd-pageheader address {
+				font-weight: 900;
+				font-size: 17px;
+			}
+
+			.nd-pageheader p {
+				margin-bottom: 0;
+				font-size: 1.25rem;
+				font-weight: 300
+			}
+
+			.citation {
+				margin-top: 15px;
+				clear: both;
+			}
+			.citation:after {
+				content: '';
+				display: table;
+				clear: both;
+			}
+			.citation img {
+				float: left;
+				margin: 0 10px 10px 0;
+				width: 150px;
+			}
+
+			.newsmedia {
+				margin-top: 15px;
+				clear: both;
+			}
+			.newsmedia:after {
+				content: '';
+				display: table;
+				clear: both;
+			}
+			.newsmedia img {
+				float: left;
+				margin: 20px 20px 10px 0;
+				width: 140px;
+				border: none;
+			}
+
+
+			figcaption {
+				display: block;
+				text-align: center;
+				font-size: 12px;
+				margin-top: 3px;
+			}
+
+			.highlight {
+				padding: 1.5rem;
+				margin-right: 0;
+				margin-left: 0;
+				background: gainsboro;
+			}
+
+			.smallfig {
+				width: 80%;
+			}
+
+			.modal .big-modal {
+				width:auto;
+				max-width:90%;
+				max-height:80%;
+			}
+
+			.img-wrapper {
+				text-align: center;
+			}
+
+			.big-modal img {
+				max-height: 60vh;
+			}
+
+			.img-scroller {
+				overflow-x: scroll;
+			}
+
+			.img-scroller .img-fluid {
+				max-width: initial;
+			}
+
+			@media (min-width: 576px) {
+				.nd-pageheader {
+					padding-top:4rem;
+					padding-bottom: 2rem;
+					margin-bottom: 2rem;
+				}
+			}
+
+			@media (min-width: 768px) {
+				.smallfig {
+					width: 60%;
+				}
+				.nd-pageheader h1 {
+					font-size:2.5rem
+				}
+
+				.nd-pageheader p {
+					font-size: 1.5rem
+				}
+				.twocol-md {
+					column-count: 2;
+				}
+			}
+
+			@media (min-width: 992px) {
+				.smallfig {
+					width: 45%;
+				}
+				#fig-arch-compare {
+					width: 49%;
+				}
+			}
+			.best { font: 12.5px Helvetica; }
+			.best { border-collapse: collapse; border-spacing: 0; }
+			.best td { position: relative; }
+			.best td img { margin-top: 15px; }
+			.best td .unit { font-size: 10px; position: absolute; top: 0; left: 3px; white-space: nowrap; width: 100%; text-overflow: clip; overflow: hidden; }
+			.best td .score { display: none; position: absolute; top: 0; right: 3px; white-sapce: nowrap; }
+			.best td:nth-child(1) {
+				min-width: 28px;
+				border-right: 3px solid transparent;
+			}
+			.best td .netname {
+				transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				text-align: center;
+				font: 12px helvetica;
+				white-space: nowrap;
+				padding: 4px;
+			}
+			.best th, .best td {
+				padding-left: 3px;
+			}
+			.best img {
+				width: 100%;
+			}
+			.best .concept {
+				color: black;
+				font: 14px helvetica;
+				padding-bottom: 2px;
+				text-transform: capitalize;
+				text-align: left;
+				margin-right: 1px;
+			}
+
+			@media (min-width: 576px) {
+				.best td .unit { font-size: inherit; }
+				.best td .netname { font-size: 14px; }
+				.best .concept { font-size: 20px; }
+			}
+
+			@media (min-width: 768px) {
+				.best td .netname { font-size: 17px; }
+			}
+
+			@media (min-width: 1200px) {
+				.best td .score { display: block; }
+			}
+
+			.modal {
+				text-align: center;
+				padding: 0!important;
+			}
+
+			.modal:before {
+				content: '';
+				display: inline-block;
+				height: 80%;
+				vertical-align: middle;
+				margin-right: -4px;
+			}
+
+			.modal-dialog {
+				display: inline-block;
+				text-align: left;
+				vertical-align: middle;
+			}
+			/* Trick for moving the media-control-panel down on chrome */
+			video::-webkit-media-controls-panel {
+			margin-top: 30px;
+			/* Do not auto-hide controls */
+			opacity: 1 !important;
+			display: flex !important;
+			}
+			video[controls] {
+			margin-bottom: 30px;
+		}
+		</style>
 
 <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
 <script>
@@ -103,7 +327,7 @@
 
 					});
 			} else {
-				document.getElementById('sign-in').textContent = '{{site.sign_in_message}}';
+				document.getElementById('sign-in').textContent = 'Sign in with GitHub to download';
 				document.getElementById('aff').style.visibility = "hidden";
 				document.getElementById('link').style.visibility = "hidden";
 				document.getElementById('name').style.visibility = "hidden";
@@ -118,7 +342,7 @@
 	};
 	function getInfo() {
 	  if (firebase.auth().currentUser){
-			if (document.getElementById('affliation').value.length > 0) {
+			if (document.getElementById('affliation').value.length > 0 && document.getElementById('nameInp').value.length > 0) {
 				console.log(document.getElementById('affliation').value.length);
 				var user = firebase.auth().currentUser;
 				var affliation = document.getElementById('affliation').value;
@@ -137,7 +361,7 @@
 				console.log(document.getElementById('affliation').value);
 				alert('Your information has been saved.')
 			} else {
-				alert('Please enter affliation');
+				alert('Please enter your information');
 			};
 			} else {
 				alert('Please log in');
@@ -180,7 +404,7 @@
 	};
   </script>
 <script type="application/ld+json">
-{"name":"{{site.title}}","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","@type":"WebSite","url":"https://iolfcv.github.io","headline":"Your awesome title","@context":"http://schema.org"}</script>
+{"name":"Incremental Object Learning from Contiguous Views","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","@type":"WebSite","url":"https://iolfcv.github.io","headline":"Your awesome title","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 	<link rel="stylesheet" href="/assets/css/style.css?v=">
@@ -195,52 +419,71 @@
   </head>
   <body>
 	<div class="wrapper">
-	  <header>
-		<h1><a href="https://iolfcv.github.io">{{site.title}}</a></h1>
+			<div class="nd-pageheader">
+					<div class="container">
+						<p class="lead">
+								<h1><a href="https://iolfcv.github.io"><strong>Incremental Object Learning from Contiguous Views</strong></a></h1>
+								<br>
+								<address>
+								<nobr><a href="https://sstojanov.github.io/">Stefan Stojanov</a><sup>1</sup>,</nobr>
+								<nobr><a href="samarth4149.github.io">Samarth Mishra</a>*<sup>1</sup>,</nobr>
+								<nobr><a href="https://anhthai1997.wordpress.com/">Ngoc Anh Thai</a>*<sup>1</sup>,</nobr>
+								<nobr>Nikhil Dhanda<sup>1</sup>,</nobr>
+								<nobr><a href="http://ahumayun.com/">Ahmad Humayun</a><sup>1</sup>,</nobr>
+								<nobr><a href="http://www.indiana.edu/~dll/">Chen Yu</a><sup>2</sup>,</nobr>
+								<nobr><a href="http://www.indiana.edu/~cogdev/">Linda B. Smith</a><sup>2</sup>,</nobr>
+								<nobr><a href="https://rehg.org/">James M. Rehg</a><sup>1</sup></nobr>
+								<br>
+								<nobr><sup>1</sup>Georgia Institute of Technology</nobr>
+								<br>
+								<nobr><sup>2</sup>Indiana University</nobr>
+								<br>
+								<nobr><sup>*</sup>Equal contribution</nobr>
+								</address>
 
-
-
-		<img src="http://drive.google.com/uc?export=view&id=1XJYy_Sb7Cq-v5PNQ_bLLSnpU8uKMZV8e" alt="Logo" />
-
-
-
-
-
-
-
-	  </header>
+						</p>
+					</div>
+				</div>
 	  <section>
-					<!-- <p>Sign in with your GitHub account below.</p> -->
-				<div class="w3-container" id="container">
-					<!-- Button that handles sign-in/sign-out -->
-					<div class="w3-container w3-padding-large"><button class="w3-button w3-black w3-large w3-margin-top w3-opacity w3-hover-opacity-off" id="sign-in">{{site.sign_in_message}}</button></div>
-
-					<div class="w3-panel w3-padding-large">
-						<div class="w3-container w3-padding-large w3-border" id="aff">
-							<div class="w3-padding-large" id="name">
-									Name:
-									<input type="text" id="nameInp" name="name" value="">
-							</div>
-							<div class="w3-padding-large" id="email">
-									Email:
-									<input type="text" id="emailInp" name="name" value="" disabled>
-							</div>
-							<div class="w3-padding-large">
-									{{site.aff}}:
-									<input type="text" id="affliation" name="affliation" value=""></div>
-							<div class="w3-padding-large"><button class="w3-opacity w3-black w3-hover-opacity-off" onclick="getInfo()" id="button">Submit</button></div>
+					<!-- <p>Sign in with GitHub account below.</p> -->
+				<div class="container" id="container">
+					<div class="row">
+						<div class="col text-center">
+								<div class="w3-container w3-padding-large"><button class="w3-button w3-black w3-large w3-margin-top w3-opacity w3-hover-opacity-off" id="sign-in">Sign in with GitHub to download</button></div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col text-align">
+								<div class="w3-panel w3-padding-large">
+										<div class="w3-container w3-padding-large w3-border" id="aff">
+											<div class="w3-padding-large" id="name">
+													<strong>Name<sup>*</sup></strong>
+													<input class="container" type="text" id="nameInp" name="name" value="">
+											</div>
+											<div class="w3-padding-large" id="email">
+													<strong>Email<sup>*</sup></strong>
+													<input class="container" type="text" id="emailInp" name="name" value="" disabled>
+											</div>
+											<div class="w3-padding-large">
+													<strong>Affiliation<sup>*</sup></strong>
+													<input class="container" type="text" id="affliation" name="affliation" value=""></div>
+											<div class="w3-padding-large"><button class="w3-opacity w3-black w3-hover-opacity-off" onclick="getInfo()" id="button">Submit</button></div>
+										</div>
+									</div>
+						</div>
+
+					</div>
+					<!-- Button that handles sign-in/sign-out -->
+
+
 				  <div class="downloads w3-container w3-padding-large">
-					  <button class="w3-opacity w3-black w3-hover-opacity-off" id="link" onclick="linkClick()">Download</button>
+						<a href="https://gatech.box.com/s/3au53sj30pdnn7drcmcq0vfcmj3po1l6">
+							<button class="w3-opacity w3-black w3-hover-opacity-off" id="link" onclick="linkClick()">Download</button>
+						</a>
 				  </div>
 			</div>
 
 	  </section>
-	  <footer>
-
-		<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-	  </footer>
 	</div>
 
 	<script src="/assets/js/scale.fix.js"></script>

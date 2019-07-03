@@ -7,16 +7,262 @@
 
 <!-- Begin Jekyll SEO tag v2.5.0 -->
 <title>Incremental Object Learning from Contiguous Views</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+<style>
+
+  body, td, th {
+    font-family: 'Open Sans', sans-serif;
+  }
+  h2 {
+    margin-top: 3ex;
+  }
+  .color-primary-0 { color: #2E4272 }  /* Main Primary color */
+  .color-primary-1 { color: #858890 }
+  .color-primary-2 { color: #556281 }
+  .color-primary-3 { color: #0E2863 }
+  .color-primary-4 { color: #021B54 }
+  
+
+  .nd-pageheader {
+    padding: 2rem 15px;
+    margin-bottom: 1.5rem;
+    color: #e4f1fe;
+    text-align: center;
+    background-image: url("http://drive.google.com/uc?export=view&id=1Hgq0QKUVaPVsShcf2DaMBpdfcn3VEoU6");
+  }
+
+  .nd-pageheader a {
+    color: #e4f1fe;
+  }
+
+  .nd-pageheader .container {
+    position: relative
+  }
+
+  .nd-pageheader h1 {
+    font-size: 17px;
+    font-weight: 400;
+    color: #fff
+  }
+
+  .nd-pageheader address {
+    font-weight: 900;
+    font-size: 17px;
+  }
+
+  .nd-pageheader p {
+    margin-bottom: 0;
+    font-size: 1.25rem;
+    font-weight: 300
+  }
+
+  .citation {
+    margin-top: 15px;
+    clear: both;
+  }
+  .citation:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  .citation img {
+    float: left;
+    margin: 0 10px 10px 0;
+    width: 150px;
+  }
+
+  .newsmedia {
+    margin-top: 15px;
+    clear: both;
+  }
+  .newsmedia:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  .newsmedia img {
+    float: left;
+    margin: 20px 20px 10px 0;
+    width: 140px;
+    border: none;
+  }
+
+
+  figcaption {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 3px;
+  }
+
+  .highlight {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    background: gainsboro;
+  }
+
+  .smallfig {
+    width: 80%;
+  }
+
+  .modal .big-modal {
+    width:auto;
+    max-width:90%;
+    max-height:80%;
+  }
+
+  .img-wrapper {
+    text-align: center;
+  }
+
+  .big-modal img {
+    max-height: 60vh;
+  }
+
+  .img-scroller {
+    overflow-x: scroll;
+  }
+
+  .img-scroller .img-fluid {
+    max-width: initial;
+  }
+
+  figure1 {
+    margin: 1em 15px;
+  }
+
+  figcaption1 {
+    font-size: 16px;
+    margin-top: 5px;
+    text-align: center;
+    display: block;
+  } 
+
+  @media (min-width: 576px) {
+    .nd-pageheader {
+      padding-top:4rem;
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .smallfig {
+      width: 60%;
+    }
+    .nd-pageheader h1 {
+      font-size:2.5rem
+    }
+
+    .nd-pageheader p {
+      font-size: 1.5rem
+    }
+    .twocol-md {
+      column-count: 2;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .smallfig {
+      width: 45%;
+    }
+    #fig-arch-compare {
+      width: 49%;
+    }
+  }
+  .best { font: 12.5px Helvetica; }
+  .best { border-collapse: collapse; border-spacing: 0; }
+  .best td { position: relative; }
+  .best td img { margin-top: 15px; }
+  .best td .unit { font-size: 10px; position: absolute; top: 0; left: 3px; white-space: nowrap; width: 100%; text-overflow: clip; overflow: hidden; }
+  .best td .score { display: none; position: absolute; top: 0; right: 3px; white-sapce: nowrap; }
+  .best td:nth-child(1) {
+    min-width: 28px;
+    border-right: 3px solid transparent;
+  }
+  .best td .netname {
+    transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    font: 12px helvetica;
+    white-space: nowrap;
+    padding: 4px;
+  }
+  .best th, .best td {
+    padding-left: 3px;
+  }
+  .best img {
+    width: 100%;
+  }
+  .best .concept {
+    color: black;
+    font: 14px helvetica;
+    padding-bottom: 2px;
+    text-transform: capitalize;
+    text-align: left;
+    margin-right: 1px;
+  }
+
+  @media (min-width: 576px) {
+    .best td .unit { font-size: inherit; }
+    .best td .netname { font-size: 14px; }
+    .best .concept { font-size: 20px; }
+  }
+
+  @media (min-width: 768px) {
+    .best td .netname { font-size: 17px; }
+  }
+
+  @media (min-width: 1200px) {
+    .best td .score { display: block; }
+  }
+
+  .modal {
+    text-align: center;
+    padding: 0!important;
+  }
+
+  .modal:before {
+    content: '';
+    display: inline-block;
+    height: 80%;
+    vertical-align: middle;
+    margin-right: -4px;
+  }
+
+  .modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+  }
+  /* Trick for moving the media-control-panel down on chrome */
+  video::-webkit-media-controls-panel {
+  margin-top: 30px;
+  /* Do not auto-hide controls */
+  opacity: 1 !important;
+  display: flex !important;
+  }
+  video[controls] {
+  margin-bottom: 30px;
+}
+</style>
+    </head>
+
+<!-- <meta name="generator" content="Jekyll v3.8.5" /> -->
 <meta property="og:title" content="Incremental Object Learning from Contiguous Views" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
-<meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
+<meta name="description" content="In this work, we present CRIB (Continual Recognition Inspired by Babies), a synthetic incremental object learning environment that can produce data that models visual imagery produced by object exploration in early infancy. CRIB is coupled with a new 3D object dataset, Toys-200, that contains 200 unique toy-like object instances, and is also compatible with existing 3D datasets. Through extensive empirical evaluation of state-of-the-art incremental learning algorithms, we find the novel empirical result that repetition can significantly ameliorate the effects of catastrophic forgetting. Furthermore, we find that in certain cases repetition allows for performance approaching that of batch learning algorithms. Finally, we propose an unsupervised incremental learning task with intriguing baseline results." />
+<meta property="og:description" content="In this work, we present CRIB (Continual Recognition Inspired by Babies), a synthetic incremental object learning environment that can produce data that models visual imagery produced by object exploration in early infancy. CRIB is coupled with a new 3D object dataset, Toys-200, that contains 200 unique toy-like object instances, and is also compatible with existing 3D datasets. Through extensive empirical evaluation of state-of-the-art incremental learning algorithms, we find the novel empirical result that repetition can significantly ameliorate the effects of catastrophic forgetting. Furthermore, we find that in certain cases repetition allows for performance approaching that of batch learning algorithms. Finally, we propose an unsupervised incremental learning task with intriguing baseline results." />
 <link rel="canonical" href="http://localhost:4000/" />
 <meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="Incremental Object Learning from Contiguous Views" />
 <script type="application/ld+json">
-{"name":"Incremental Object Learning from Contiguous Views","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","@type":"WebSite","url":"http://localhost:4000/","headline":"Your awesome title","@context":"http://schema.org"}</script>
+{"name":"Incremental Object Learning from Contiguous Views","description":"In this work, we present CRIB (Continual Recognition Inspired by Babies), a synthetic incremental object learning environment that can produce data that models visual imagery produced by object exploration in early infancy. CRIB is coupled with a new 3D object dataset, Toys-200, that contains 200 unique toy-like object instances, and is also compatible with existing 3D datasets. Through extensive empirical evaluation of state-of-the-art incremental learning algorithms, we find the novel empirical result that repetition can significantly ameliorate the effects of catastrophic forgetting. Furthermore, we find that in certain cases repetition allows for performance approaching that of batch learning algorithms. Finally, we propose an unsupervised incremental learning task with intriguing baseline results.","@type":"WebSite","url":"http://localhost:4000/","headline":"Your awesome title","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/style.css?v=">
@@ -24,64 +270,160 @@
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
-  </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1><a href="https://iolfcv.github.io">Incremental Object Learning from Contiguous Views</a></h1>
-        
-        
-        <!-- <iframe src="https://giphy.com/embed/fu25u6L9s6RB6" width="300" height="200" frameBorder="0" class="giphy-embed"></iframe><p><a href="https://giphy.com/gifs/disney-mickey-mouse-fu25u6L9s6RB6"></a></p> -->
-        <img src="http://drive.google.com/uc?export=view&id=1XJYy_Sb7Cq-v5PNQ_bLLSnpU8uKMZV8e" alt="Logo" />
-        <ul class="downloads">
-          <li><a href="/downloads/index.html">Download <strong>ZIP File</strong></a></li>
-          <li><a href="">View <strong>Paper</strong></a></li>
-          <li><a href="">View On <strong>GitHub</strong></a></li>
-        </ul>
+    <div class="nd-pageheader">
+      <div class="container">
+        <p class="lead">
+            <h1><a href="https://iolfcv.github.io"><strong>Incremental Object Learning from Contiguous Views</strong></a></h1>
+            <br>
+            <address>
+            <nobr><a href="https://sstojanov.github.io/">Stefan Stojanov</a><sup>1</sup>,</nobr>
+            <nobr><a href="samarth4149.github.io">Samarth Mishra</a>*<sup>1</sup>,</nobr>
+            <nobr><a href="https://anhthai1997.wordpress.com/">Ngoc Anh Thai</a>*<sup>1</sup>,</nobr>
+            <nobr>Nikhil Dhanda<sup>1</sup>,</nobr>
+            <nobr><a href="http://ahumayun.com/">Ahmad Humayun</a><sup>1</sup>,</nobr>
+            <nobr><a href="http://www.indiana.edu/~dll/">Chen Yu</a><sup>2</sup>,</nobr>
+            <nobr><a href="http://www.indiana.edu/~cogdev/">Linda B. Smith</a><sup>2</sup>,</nobr>
+            <nobr><a href="https://rehg.org/">James M. Rehg</a><sup>1</sup></nobr>
+            <br>
+            <nobr><sup>1</sup>Georgia Institute of Technology</nobr>
+            <br>
+            <nobr><sup>2</sup>Indiana University</nobr>
+            <br>
+            <nobr><sup>*</sup>Equal contribution</nobr>
+            </address>
+
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <p>
+              <a href="/downloads/index.html" class="d-inline-block p-3">
+                <img height="200" width="180" src="http://drive.google.com/uc?export=view&id=1UxXOx54DoIZi247JuXQYJLX2RrqT8lbk" style="border:1px solid" data-nothumb="">
+                <br>
+                <br>
+                <strong>Data</strong></a>
+              <a href="http://openaccess.thecvf.com/content_CVPR_2019/html/Stojanov_Incremental_Object_Learning_From_Contiguous_Views_CVPR_2019_paper.html" class="d-inline-block p-3">
+                <img height="200" width="180" src="http://drive.google.com/uc?export=view&id=1mO_tGvgRgea4FZRRP5MeSachmaQ2yWb0" style="border:1px solid" data-nothumb="">
+                <br>
+                <br>
+                <strong>CVPR 2019 Paper</strong></a>
+              <a href="https://github.com/iolfcv/experiments" class="d-inline-block p-3">
+                <img height="200" width="180" src="http://drive.google.com/uc?export=view&id=1dqOOz3VJvgxGWy-K2mpvYmqYfspyDyRF" style="border:1px solid" data-nothumb="">
+                <br>
+                <br>
+                <strong>Code</strong></a>
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col text-align">
+          <h2>Abstract</h2>
+          <p>In this work, we present CRIB (Continual Recognition Inspired by Babies), a synthetic incremental object learning environment that can produce data that models visual imagery produced by object exploration in early infancy. CRIB is coupled with a new 3D object dataset, Toys-200, that contains 200 unique toy-like object instances, and is also compatible with existing 3D datasets. Through extensive empirical evaluation of state-of-the-art incremental learning algorithms, we find the novel empirical result that repetition can significantly ameliorate the effects of catastrophic forgetting. Furthermore, we find that in certain cases repetition allows for performance approaching that of batch learning algorithms. Finally, we propose an unsupervised incremental learning task with intriguing baseline results.
+            </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <h2>Repeated Exposure Ameliorates Catastrophic Forgetting</h2>
+          <div class="col text-center">
+            <img height="350" width="800" src="http://drive.google.com/uc?export=view&id=11m_mOD5uRhZ1cakBZu1XqzwdsA3e67O5">
+          </div>
+          <br>
+          <br>
+          <p>In general, incremental learning algorithms only see one concept at a time and never again, usually leading to catastrophic forgetting. Using CRIB to repeatedly sample the concept class of object instances, we find that repeated exposure to object instances leads to a gradual improvement in accuracy that eventually reaches batch performance.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <h2>CRIB Learning Environment Samples</h2>
+          <h4 class="text-center">Instance Learning Exposures</h4>
+          <figure1 class="d-inline-block p-0">
+            <figcaption1>Plane</figcaption1>
+            <img src="http://drive.google.com/uc?export=view&id=1OMwDPu1vMeDplpmXkzKbcbww2g3KvsqQ" width="150" height="150" frameBorder="0">
+            
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <figcaption1>Cup</figcaption1>
+              <img src="http://drive.google.com/uc?export=view&id=1LtPrzfP0U5pMGXZnCRJR6HIrqRrybQpc" width="150" height="150" frameBorder="0">
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <figcaption1>Truck</figcaption1>
+              <img src="http://drive.google.com/uc?export=view&id=1ARuGSONsHcasfyIUXfcKrEmrddJ8AUZT" width="150" height="150" frameBorder="0">             
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <figcaption1>Bee</figcaption1>
+              <img src="http://drive.google.com/uc?export=view&id=1KVpeB0-HMnPrC-Fq1lYKMYqnLh0feQAk" width="150" height="150" frameBorder="0">
+              
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <figcaption1>Spaceship</figcaption1>
+              <img src="http://drive.google.com/uc?export=view&id=1nTldbL_cOlURDn5hLhM07aJUlaTNVyM_" width="150" height="150" frameBorder="0">
+              
+          </figure1>
+
+          <h4 class="text-center">Instance Testing Image Data</h4>
+          <figure1 class="d-inline-block p-0">
+            <img src="http://drive.google.com/uc?export=view&id=1uIBP-jK92C65vf_QP4C7X0mr27aZCD_O" width="150" height="150" frameBorder="0">
+            
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <img src="http://drive.google.com/uc?export=view&id=1dPpIoaDw-csrCfaYD5KKH2LpLEykcsuk" width="150" height="150" frameBorder="0">
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <img src="http://drive.google.com/uc?export=view&id=1tD4wG9gAUTqt1pR2FUgE-_jogmVLQFzK" width="150" height="150" frameBorder="0">             
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <img src="http://drive.google.com/uc?export=view&id=1mz8wxxNawjfhSNLux2ntI27Xe2tQpRCQ" width="150" height="150" frameBorder="0">
+              
+          </figure1>
+          <figure1 class="d-inline-block p-0">
+              <img src="http://drive.google.com/uc?export=view&id=1XN0MfvEu2UqfRrtwXmzrsxygPGCMrOKn" width="150" height="150" frameBorder="0">
+              
+          </figure1>
+          <br>
+          <br>
+          <p>CRIB is a data generator accessible using a simple Python API that given a query for instance id and sequence length, renders a video clip of a smoothly rotating object overlaid on a dynamic background. Data is returned as 3xHxW array and can be saved to disk or directly used as input data for training. Each generated clip has randomized lighting, object scale and object rotation trajectory. This allows for virtually unlimited data.</p>
+
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col">
+            <h2>Incremental Learning Without Supervision is not Solved</h2>
+            <div class="col text-center">
+              <img height="350" width="800" src="http://drive.google.com/uc?export=view&id=1Y8mRE518aqPflRfJbE6mK4z3erWLGixM">
+              
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    
 
         
 
         
 
         
-      </header>
+      <!-- </header> -->
       <section>
 
       
 
-      <h1>What is Lorem Ipsum?</h1>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-        when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-      <h1>Why do we use it?</h1>
-      <p>It is a long established fact that a reader will be distracted by the readable 
-      content of a page when looking at its layout. The point of using Lorem Ipsum is that 
-      it has a more-or-less normal distribution of letters, as opposed to using 'Content here, 
-      content here', making it look like readable English. Many desktop publishing packages and 
-      web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will 
-      uncover many web sites still in their infancy. Various versions have evolved over the years, 
-      sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-
-
-      <h1>Where does it come from?</h1>
-      Contrary to popular belief, Lorem Ipsum is not simply random text. 
-      It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. 
-      Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, 
-      looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, 
-      and going through the cites of the word in classical literature, discovered the undoubtable source. 
-      Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" 
-      (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, 
-      very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", 
-      comes from a line in section 1.10.32.
-
-      The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. 
-      Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their 
-      exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+      
       </section>
-      <footer>
+      <!-- <footer>
         
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+      </footer> -->
     </div>
     
     <script src="/assets/js/scale.fix.js"></script>
